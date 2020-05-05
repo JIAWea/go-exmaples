@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func main() {
@@ -38,4 +39,6 @@ func main() {
 	for k := range langs {
 		fmt.Printf("index: %v\n", k)
 	}
+
+	fmt.Println(math.Floor(30.10))
 }
