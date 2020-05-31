@@ -37,8 +37,8 @@ func main() {
 	ok2 := StringSliceLoopCompare(s1, s3)
 	fmt.Println("Equal:", ok2) // false
 
-	ok3 := stringSliceReflectEqual(s1, s2)
+	ok3 := StringSliceReflectEqual(s1, s2)
 	fmt.Println("Equal:", ok3) // true
-	ok4 := stringSliceReflectEqual(s1, s3)
+	ok4 := StringSliceReflectEqual(s1, s3)
 	fmt.Println("Equal:", ok4) // false
 }
