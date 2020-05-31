@@ -22,6 +22,8 @@ func main() {
 
 	fmt.Println("before print counter, need to wating 2 second...")
 	fmt.Println("counter: ", <-counter)
+
+	// 阻塞等待其他goroutine发送的值，如果上面没有close(counter)，则会造成死锁
 	val, ok := <-counter
 	if ok {
 		fmt.Println("counter is not closed, val: ", val)
@@ -32,13 +34,16 @@ func main() {
 		nums <- 1
 		nums <- 2
 		nums <- 3
+		close(nums)
 	}()
 
-	for i := 0; i < cap(nums); i++ {
-		fmt.Println(<-nums)
+	// for i := 0; i < cap(nums); i++ {
+	// 	fmt.Println(<-nums)
+	// }
+	for c := range nums {
+		// 如没有关闭通道则会造成死锁
+		fmt.Println("c: ", c)
 	}
-
-	close(nums)
 
 	// 使用for-range循环通道
 	for v := range counter {
