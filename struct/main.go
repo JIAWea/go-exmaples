@@ -10,12 +10,12 @@ import (
 type Person struct {
 	AgeA int
 	AgeB *int
-	
+
 	CreateAT time.Time
 	DeleteAT *time.Time
 }
 
-func main(){
+func main() {
 	// struct 中带指针是允许为空，nil(null)，没带指针则是零值
 	var p Person
 	text := `{}`
@@ -24,8 +24,11 @@ func main(){
 	}
 	fmt.Println("反序列化: ", p)
 
-	a := Person{}
+	age := 1
+	a := Person{AgeB: &age}
 	fmt.Println("初始值:", a)
 	b, _ := json.Marshal(a)
 	fmt.Println("json:", string(b))
+
+	fmt.Println(*(a.AgeB))
 }
