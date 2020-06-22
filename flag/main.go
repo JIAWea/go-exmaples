@@ -13,11 +13,12 @@ func main() {
 	fileName := flag.String("filename", "logfile", "File name for the log file")
 	logLevel := flag.Int("loglevel", 0, "An integer value for Level (0-4)")
 	isEnable := flag.Bool("enable", false, "A boolean value for enabling log options")
-	
+
 	var num int
 	// 判定变量
 	flag.IntVar(&num, "num", 25, "An integer value")
 
+	flag.Usage = usage
 	// Parse parses flag definitions from the argument list.
 	flag.Parse()
 
@@ -40,4 +41,9 @@ func main() {
 		}
 	}
 
+}
+
+func usage() {
+	fmt.Printf("start fail...\n")
+	flag.PrintDefaults()
 }
