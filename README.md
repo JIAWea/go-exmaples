@@ -1,2 +1,3 @@
-# Go_pkg_exmaples
-Golang标准包练习
+# go-exmaples
+
+Golang 基础练习
