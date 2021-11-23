@@ -39,4 +39,18 @@ func main() {
 	// 分割一个或多个空格
 	fmt.Println(strings.Fields("  foo bar  baz   "))                      // ["foo" "bar" "baz"]
 	fmt.Println(strings.FieldsFunc("  foo bar  baz   ", unicode.IsSpace)) // [foo bar baz]
+
+	sql := `
+				SELECT res.*, u.name FROM 
+				(SELECT * FROM file WHERE sender_id = 1
+				UNION ALL
+				SELECT * FROM file_out WHERE receiver_id = 2) 
+				res
+				INNER JOIN user u ON u.id = res.sender_id
+				WHERE res.deleted_at IS NULL
+				ORDER BY id
+			`
+	fromIndex := strings.Index(sql, "FROM")
+	orderIndex := strings.Index(sql, "ORDER")
+	fmt.Println("res: ", "SELECT COUNT(*) AS total FROM "+sql[fromIndex+4:orderIndex])
 }

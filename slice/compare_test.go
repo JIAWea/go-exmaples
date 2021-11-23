@@ -1,7 +1,6 @@
-package test
+package main
 
 import (
-	"reflect"
 	"testing"
 )
 
@@ -16,27 +15,6 @@ var (
 	s1 = []string{"hi", "this", "is", "a", "test", "for", "two", "slice"}
 	s2 = []string{"hi", "this", "is", "a", "test", "for", "two", "slice"}
 )
-
-func StringSliceLoopCompare(s1, s2 []string) bool {
-	if len(s1) != len(s2) {
-		return false
-	}
-
-	if (s1 == nil) != (s2 == nil) {
-		return false
-	}
-
-	for i, v := range s1 {
-		if v != s2[i] {
-			return false
-		}
-	}
-	return true
-}
-
-func StringSliceReflectEqual(s1, s2 []string) bool {
-	return reflect.DeepEqual(s1, s2)
-}
 
 func BenchmarkStringSliceLoopCompare(b *testing.B) {
 	for n := 0; n < b.N; n++ {

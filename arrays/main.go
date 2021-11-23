@@ -41,4 +41,20 @@ func main() {
 	}
 
 	fmt.Println(math.Floor(30.10))
+
+	l := []int{10, 20, 30, 40, 50}
+
+	m := make(map[int]*int, 5)
+	for i, v := range l {
+		// 指针指向同一个地址
+		fmt.Printf("%p\n", &v)
+		// m[i] = &v
+
+		tmp := v
+		m[i] = &tmp
+	}
+
+	for k, v := range m {
+		fmt.Printf("k: %v, v: %v\n", k, *v)
+	}
 }
